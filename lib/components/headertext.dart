@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+// header text for login and signup screen
 class HeaderText extends StatelessWidget {
   final String title;
   final String subtitle;
