@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class WeatherCard extends StatelessWidget {
   final String city;
-  final double temperature; // can be Kelvin or Celsius
-  final double feelsLike;   // can be Kelvin or Celsius
+  final double temperature; // Kelvin or Celsius
+  final double feelsLike;   // Kelvin or Celsius
   final String description;
   final String iconCode;
   final VoidCallback? onTap;
@@ -20,10 +20,8 @@ class WeatherCard extends StatelessWidget {
 
   String formatTemperature(double temp) {
     if (temp > 100) {
-      // Probably Kelvin, convert to Celsius
       return (temp - 273.15).round().toString();
     } else {
-      // Probably Celsius, just round
       return temp.round().toString();
     }
   }
@@ -33,56 +31,59 @@ class WeatherCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Card(
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 4,
-        color: const Color.fromARGB(141, 33, 33, 33),  // Dark grey background
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
           child: Row(
             children: [
               Image.network(
-                'http://openweathermap.org/img/wn/$iconCode@2x.png',
+                'https://openweathermap.org/img/wn/$iconCode@2x.png',
                 width: 60,
                 height: 60,
-                color: Colors.white,  // Tint icon white to match theme
-                colorBlendMode: BlendMode.srcIn,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.error, color: Colors.red);
+                },
               ),
               const SizedBox(width: 16),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    city,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,  // White text
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      city,
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  Text(
-                    '${formatTemperature(temperature)} °C',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white70,  // Slightly transparent white
+                    const SizedBox(height: 4),
+                    Text(
+                      '${formatTemperature(temperature)} °C',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.black87,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Feels like: ${formatTemperature(feelsLike)} °C',
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.white54,  // More transparent white
+                    Text(
+                      'Feels like: ${formatTemperature(feelsLike)} °C',
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black54,
+                      ),
                     ),
-                  ),
-                  Text(
-                    description,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.white70,
+                    Text(
+                      description.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.black87,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

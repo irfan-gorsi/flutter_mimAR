@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:mimar/screens/home/gemini/gemini_widget.dart'; 
+
+class AiChatScreen extends StatelessWidget {
+  const AiChatScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Gemini AI')),
+      body: const GeminiWidget(),
+    );
+  }
+}

@@ -5,4 +5,8 @@ class Env {
   static String get signupUrl => '$apiBaseUrl/api/auth/signup';
   static String get loginUrl => '$apiBaseUrl/api/auth/login';
   static String get weatherUrl => '$apiBaseUrl/api/weather';
+  static String get quoteUrl => '$apiBaseUrl/api/quote';
+  static String get allusersUrl => '$apiBaseUrl/api/auth/users';
+  static String get geminiUrl => '$apiBaseUrl/api/generate-text';
+
 }
