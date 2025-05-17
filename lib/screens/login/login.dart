@@ -26,7 +26,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   Future<void> _checkIfLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('jwt_token');
+    final token = prefs.getString('jwt_token');  // Consistent key
+
     if (token != null && context.mounted) {
       Navigator.pushReplacementNamed(context, '/home');
     }
@@ -55,7 +56,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         data: (token) async {
           if (token != null && context.mounted) {
             final prefs = await SharedPreferences.getInstance();
-            await prefs.setString('jwt_token', token);
+            await prefs.setString('jwt_token', token);  
             Navigator.pushReplacementNamed(context, '/home');
           }
         },
@@ -74,11 +75,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-             HeaderText(
+            HeaderText(
               title: 'Sign In',
               subtitle: 'Hi, welcome back',
             ),
-                    const SizedBox(height: 10),
+            const SizedBox(height: 10),
             CustomTextField(controller: emailController, hintText: 'Email'),
             const SizedBox(height: 16),
             CustomTextField(
@@ -93,7 +94,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     text: 'Login',
                     onPressed: _login,
                   ),
-                   const SizedBox(height: 24), 
+            const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -102,7 +103,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/signup');
                   },
-                  child: const Text("Signup",style: TextStyle(color: Colors.black),),
+                  child: const Text(
+                    "Signup",
+                    style: TextStyle(color:  const Color(0xFF4A90E2),),
+                  ),
                 ),
               ],
             ),

@@ -7,7 +7,12 @@ class AiChatScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Gemini AI')),
+     appBar: AppBar(
+  title: const Text('Gemini AI'),
+  backgroundColor: const Color(0xFF4A90E2),
+  foregroundColor: Colors.white,
+),
+
       body: const GeminiWidget(),
     );
   }

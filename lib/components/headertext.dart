@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-// header text for login and signup screen
+
+// Header text for login and signup screen
 class HeaderText extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -17,10 +18,11 @@ class HeaderText extends StatelessWidget {
       children: [
         Text(
           title,
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall
-              ?.copyWith(fontWeight: FontWeight.bold, fontSize: 40),
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                fontSize: 40,
+                color: const Color(0xFF4A90E2), // Apply custom blue color
+              ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 6),

@@ -15,7 +15,7 @@ class LoginController extends StateNotifier<AsyncValue<String?>> {
       final token = await LoginApiService.login(email, password);
 
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('jwt_token', token); // Save token
+      await prefs.setString('jwt_token', token); // Save with 'jwt_token'
 
       state = AsyncValue.data(token);
     } catch (e, st) {

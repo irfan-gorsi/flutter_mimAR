@@ -44,24 +44,38 @@ class _UserTableState extends State<UserTable> {
   @override
   Widget build(BuildContext context) {
     if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
+          strokeWidth: 3,
+        ),
+      );
     }
 
     if (_errorMessage != null) {
       return Center(
         child: Text(
           _errorMessage!,
-          style: const TextStyle(color: Colors.red, fontSize: 16),
+          style: const TextStyle(
+            color: Colors.redAccent,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
         ),
       );
     }
 
     if (_users.isEmpty) {
       return const Center(
-          child: Text(
-        'No users found.',
-        style: TextStyle(fontSize: 16),
-      ));
+        child: Text(
+          'No users found.',
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.blueGrey,
+          ),
+        ),
+      );
     }
 
     return SingleChildScrollView(
@@ -70,60 +84,118 @@ class _UserTableState extends State<UserTable> {
         margin: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: const [
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
             BoxShadow(
-              color: Colors.black12,
-              blurRadius: 6,
-              offset: Offset(0, 3),
-            )
+              color: Colors.blueGrey.withOpacity(0.1),
+              blurRadius: 10,
+              spreadRadius: 1,
+              offset: const Offset(0, 4),
+            ),
           ],
-          borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: Colors.grey.shade300),
+          border: Border.all(color: Colors.blue.shade50),
         ),
-        child: DataTable(
-          headingRowColor:
-              WidgetStateColor.resolveWith((states) => Colors.grey[200]!),
-          headingTextStyle: const TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 16,
-            color: Colors.black87,
-          ),
-          dataTextStyle: const TextStyle(
-            fontSize: 14,
-            color: Colors.black87,
-          ),
-          dividerThickness: 1,
-          columns: const [
-            DataColumn(
-              label: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: Text('Name'),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: DataTable(
+            headingRowHeight: 60,
+            dataRowHeight: 58,
+            horizontalMargin: 24,
+            columnSpacing: 32,
+            headingRowColor: MaterialStateProperty.all(
+              Colors.blue.shade50,
+            ),
+            headingTextStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Colors.blue.shade800,
+            ),
+            dataTextStyle: const TextStyle(
+              fontSize: 15,
+              color: Colors.black87,
+            ),
+            dividerThickness: 0.5,
+            border: TableBorder(
+              verticalInside: BorderSide(
+                color: Colors.grey.shade200,
+                width: 0.5,
+              ),
+              horizontalInside: BorderSide(
+                color: Colors.grey.shade200,
+                width: 0.5,
               ),
             ),
-            DataColumn(
-              label: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12),
-                child: Text('Email'),
-              ),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey.shade200),
             ),
-          ],
-          rows: List<DataRow>.generate(
-            _users.length,
-            (index) {
-              final user = _users[index];
-              return DataRow(
-                cells: [
-                  DataCell(Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(user['fullname'] ?? 'N/A'),
-                  )),
-                  DataCell(Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: Text(user['email'] ?? 'N/A'),
-                  )),
-                ],
-              );
-            },
+            columns: [
+              DataColumn(
+                label: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
+                    'Name',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.blue.shade800,
+                    ),
+                  ),
+                ),
+              ),
+              DataColumn(
+                label: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Text(
+                    'Email',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                      color: Colors.blue.shade800,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+            rows: List<DataRow>.generate(
+              _users.length,
+              (index) {
+                final user = _users[index];
+                return DataRow(
+                  color: MaterialStateProperty.resolveWith<Color?>((states) {
+                    if (states.contains(MaterialState.selected)) {
+                      return Colors.blue.shade50.withOpacity(0.3);
+                    }
+                    return index.isEven
+                        ? Colors.white
+                        : Colors.grey.shade50;
+                  }),
+                  cells: [
+                    DataCell(
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          user['fullname'] ?? 'N/A',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                    DataCell(
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          user['email'] ?? 'N/A',
+                          style: TextStyle(
+                            color: Colors.blueGrey.shade700,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

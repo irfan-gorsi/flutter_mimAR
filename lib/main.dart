@@ -17,7 +17,7 @@ Future<void> main() async {
   await dotenv.load(fileName: "assets/.env");
 
   final prefs = await SharedPreferences.getInstance();
-  final token = prefs.getString('token');
+  final token = prefs.getString('jwt_token');  // Use 'jwt_token' everywhere
 
   runApp(ProviderScope(child: MyApp(initialRoute: token != null ? '/home' : '/signup')));
 }
