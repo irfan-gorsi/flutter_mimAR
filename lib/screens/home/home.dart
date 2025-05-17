@@ -1,4 +1,6 @@
 
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:mimar/screens/home/AllUsers/user_table.dart';
 import 'package:mimar/screens/home/QuoteComp/quote_controller.dart';
@@ -91,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
   onPressed: () => Navigator.of(context).pop(true),
   child: const Text(
     'OK',
-    style: TextStyle(color: Color(0xFF4A90E2)),
+    style: TextStyle(color: Colors.red),
   ),
 ),
 
