@@ -139,22 +139,45 @@ class _HomeScreenState extends State<HomeScreen> {
             bottom: Radius.circular(20),
           ),
         ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: Tooltip(
-              message: 'Logout',
-              child: IconButton(
-                iconSize: 28,
-                icon: Icon(
-                  Icons.logout,
-                  color: const Color(0xFF4A90E2),
-                ),
-                onPressed: _showLogoutDialog,
-              ),
-            ),
-          ),
-        ],
+       actions: [
+  Padding(
+    padding: const EdgeInsets.only(right: 20),
+    child: Tooltip(
+      message: 'Logout',
+  child: SizedBox(
+  height: 30,
+  width: 100,
+  child: ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: const Color(0xFF4A90E2),
+      padding: EdgeInsets.zero,
+      textStyle: const TextStyle(fontSize: 14),
+    ),
+    onPressed: _showLogoutDialog,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: const [
+        Text(
+          "Logout",
+          style: TextStyle(color: Colors.white),
+        ),
+        SizedBox(width: 6),
+        Icon(
+          Icons.logout,
+          color: Colors.white,
+          size: 16,
+        ),
+      ],
+    ),
+  ),
+),
+
+
+    ),
+  ),
+],
+
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
