@@ -33,6 +33,12 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     super.dispose();
   }
 
+  bool isValidEmail(String email) {
+    // Simple email regex
+    final emailRegex = RegExp(r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+    return emailRegex.hasMatch(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     final signupState = ref.watch(signupControllerProvider);
@@ -48,28 +54,51 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
               title: 'Create Account',
               subtitle: 'Fill your information below',
             ),
-                    const SizedBox(height: 10),
+            const SizedBox(height: 10),
 
             CustomTextField(
-                controller: fullnameController, hintText: 'Full Name'),
+              controller: fullnameController,
+              hintText: 'Full Name',
+            ),
             const SizedBox(height: 16),
-            CustomTextField(controller: emailController, hintText: 'Email'),
-            const SizedBox(height: 16),
+
             CustomTextField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: true),
+              controller: emailController,
+              hintText: 'Email',
+            ),
             const SizedBox(height: 16),
+
+            CustomTextField(
+              controller: passwordController,
+              hintText: 'Password',
+              obscureText: true,
+            ),
+            const SizedBox(height: 16),
+
             signupState.isLoading
                 ? const CircularProgressIndicator()
                 : CustomButton(
                     text: 'Signup',
                     onPressed: () async {
-                      await signupNotifier.signup(
-                        fullnameController.text,
-                        emailController.text,
-                        passwordController.text,
-                      );
+                      final fullname = fullnameController.text.trim();
+                      final email = emailController.text.trim();
+                      final password = passwordController.text.trim();
+
+                      if (fullname.isEmpty || email.isEmpty || password.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Please fill in all fields.")),
+                        );
+                        return;
+                      }
+
+                      if (!isValidEmail(email)) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Please enter a valid email address.")),
+                        );
+                        return;
+                      }
+
+                      await signupNotifier.signup(fullname, email, password);
 
                       final state = ref.read(signupControllerProvider);
                       if (state.hasError) {
@@ -91,7 +120,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       }
                     },
                   ),
+
             const SizedBox(height: 24),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -102,7 +133,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   },
                   child: const Text(
                     "Login",
-                    style: TextStyle(color: const Color(0xFF4A90E2)),
+                    style: TextStyle(color: Color(0xFF4A90E2)),
                   ),
                 ),
               ],

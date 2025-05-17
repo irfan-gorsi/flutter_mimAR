@@ -26,11 +26,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   Future<void> _checkIfLoggedIn() async {
     final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString('jwt_token');  // Consistent key
+    final token = prefs.getString('jwt_token');
 
     if (token != null && context.mounted) {
       Navigator.pushReplacementNamed(context, '/home');
     }
+  }
+
+  bool isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    return emailRegex.hasMatch(email);
   }
 
   void _login() {
@@ -40,6 +45,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter email and password')),
+      );
+      return;
+    }
+
+    if (!isValidEmail(email)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please enter a valid email address')),
       );
       return;
     }
@@ -56,7 +68,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         data: (token) async {
           if (token != null && context.mounted) {
             final prefs = await SharedPreferences.getInstance();
-            await prefs.setString('jwt_token', token);  
+            await prefs.setString('jwt_token', token);
             Navigator.pushReplacementNamed(context, '/home');
           }
         },
@@ -105,7 +117,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   },
                   child: const Text(
                     "Signup",
-                    style: TextStyle(color:  const Color(0xFF4A90E2),),
+                    style: TextStyle(color: Color(0xFF4A90E2)),
                   ),
                 ),
               ],
