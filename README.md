@@ -1,20 +1,96 @@
-<<<<<<< HEAD
-# mimAR_frontend-flutter
-=======
-# mimar
+# Flutter Frontend – Technical Task
 
-A new Flutter project.
+## Overview
+
+This is the Flutter frontend implementation of the technical task. The app includes login, signup, and a home screen that displays weather information, a random motivational quote,gemini feature and a list of users. It connects to a Node.js backend via RESTful APIs.
+
+## Features
+
+- Login and Signup screens
+  - Responsive UI design
+  - Form validation (email format, password strength)
+  - Authentication using JWT
+- Home Screen
+  - Displays weather data (based on city or location)
+  - Shows a random motivational quote
+  - Lists all users in a table format
+  - added gemini text generation feature
+- State Management using Provider or Riverpod
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK (v3.0.0 or above)
+- Dart SDK
+- Android Studio or VS Code
+- Node.js backend running separately
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> b30221b (authentication is done)
+1. Clone the repository:
+
+## Folder structure
+lib /
+main.dart
+components 
+    |custom_button.dart
+    | custom_text_field.dart
+    |headertext.dart
+
+screens 
+ -login 
+   |api_service.dart
+   |login_controller.dart
+   |login.dart
+
+ -signup 
+   |api_service.dart
+   |signup_controller.dart
+   |signup.dart
+ -home 
+   -allusers folder
+   |api_service.dart
+   |signup_controller.dart
+   |signup.dart
+   -gemini folder
+   |chat_screen.dart
+   |gemini_controller.dart
+   |gemini_widget.dart
+   -quotecomp folder
+   |quote_api_service.dart
+   |quote_controller.dart
+   |quotecard.dart
+   -weathercomp folder
+   |api_service.dart
+   |weather_controller.dart
+   |weather_comp.dart
+   |detailed_weather_screen.dart
+
+utils folder/
+   |env.dart
+
+
+
+
+Dependencies
+flutter (SDK)
+
+cupertino_icons: ^1.0.8
+
+Dev Dependencies
+flutter_test (SDK)
+
+flutter_dotenv: ^5.2.1
+
+http: ^1.4.0
+
+flutter_riverpod: ^2.6.1
+
+flutter_lints: ^5.0.0
+
+shared_preferences: ^2.5.3
+
+geolocator: ^9.0.1
+
+permission_handler: ^12.0.0+1
