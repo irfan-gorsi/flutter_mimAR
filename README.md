@@ -31,44 +31,48 @@ This is the Flutter frontend implementation of the technical task. The app inclu
 1. Clone the repository:
 
 ## Folder structure
-lib /
-main.dart
-components 
-    |custom_button.dart
-    | custom_text_field.dart
-    |headertext.dart
-
-screens 
- -login 
-   |api_service.dart
-   |login_controller.dart
-   |login.dart
-
- -signup 
-   |api_service.dart
-   |signup_controller.dart
-   |signup.dart
- -home 
-   -allusers folder
-   |api_service.dart
-   |signup_controller.dart
-   |signup.dart
-   -gemini folder
-   |chat_screen.dart
-   |gemini_controller.dart
-   |gemini_widget.dart
-   -quotecomp folder
-   |quote_api_service.dart
-   |quote_controller.dart
-   |quotecard.dart
-   -weathercomp folder
-   |api_service.dart
-   |weather_controller.dart
-   |weather_comp.dart
-   |detailed_weather_screen.dart
-
-utils folder/
-   |env.dart
+lib/
+├── main.dart
+├── components/
+│   ├── custom_button.dart
+│   ├── custom_text_field.dart
+│   └── headertext.dart
+│
+├── screens/
+│   ├── login/
+│   │   ├── api_service.dart
+│   │   ├── login_controller.dart
+│   │   └── login.dart
+│   │
+│   ├── signup/
+│   │   ├── api_service.dart
+│   │   ├── signup_controller.dart
+│   │   └── signup.dart
+│   │
+│   ├── home/
+│   │   ├── allusers/
+│   │   │   ├── api_service.dart
+│   │   │   ├── signup_controller.dart
+│   │   │   └── signup.dart
+│   │
+│   ├── gemini/
+│   │   ├── chat_screen.dart
+│   │   ├── gemini_controller.dart
+│   │   └── gemini_widget.dart
+│   │
+│   ├── quotecomp/
+│   │   ├── quote_api_service.dart
+│   │   ├── quote_controller.dart
+│   │   └── quotecard.dart
+│   │
+│   └── weathercomp/
+│       ├── api_service.dart
+│       ├── weather_controller.dart
+│       ├── weather_comp.dart
+│       └── detailed_weather_screen.dart
+│
+├── utils/
+│   └── env.dart
 
 
 
