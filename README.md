@@ -32,7 +32,7 @@ This is the Flutter frontend implementation of the technical task. The app inclu
 
 ```bash
 git clone https://github.com/your-username/flutter_frontend.git
-cd flutter_frontend
+cd mimar
 ```
 
 ##  Folder Structure
