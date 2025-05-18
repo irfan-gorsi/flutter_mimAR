@@ -33,50 +33,37 @@ This is the Flutter frontend implementation of the technical task. The app inclu
 ## Folder structure
 flutter_frontend/
 ├── lib/
-│   ├── main.dart                     # Main Flutter app entry point
-│
-│   ├── components/                   # Reusable UI components
-│   │   ├── custom_button.dart
-│   │   ├── custom_text_field.dart
-│   │   └── headertext.dart
-│
-│   ├── screens/                      # App screens organized by feature
-│   │   ├── login/                    # Login screen and logic
-│   │   │   ├── api_service.dart
-│   │   │   ├── login_controller.dart
-│   │   │   └── login.dart
-│   │   │
-│   │   ├── signup/                   # Signup screen and logic
-│   │   │   ├── api_service.dart
-│   │   │   ├── signup_controller.dart
-│   │   │   └── signup.dart
-│   │   │
-│   │   ├── home/                     # Home screen container
-│   │   │   ├── allusers/             # User list UI & logic
-│   │   │   │   ├── api_service.dart
-│   │   │   │   ├── signup_controller.dart
-│   │   │   │   └── signup.dart
-│   │
-│   │   ├── gemini/                   # Gemini AI integration
-│   │   │   ├── chat_screen.dart
-│   │   │   ├── gemini_controller.dart
-│   │   │   └── gemini_widget.dart
-│   │
-│   │   ├── quotecomp/                # Motivational quote feature
-│   │   │   ├── quote_api_service.dart
-│   │   │   ├── quote_controller.dart
-│   │   │   └── quotecard.dart
-│   │
-│   │   └── weathercomp/              # Weather display feature
-│   │       ├── api_service.dart
-│   │       ├── weather_controller.dart
-│   │       ├── weather_comp.dart
-│   │       └── detailed_weather_screen.dart
-│
-│   ├── utils/                        # Utility and helper files
-│   │   └── env.dart
-│
-└── pubspec.yaml                      # Flutter project configuration
+│ ├── main.dart # Main Flutter app entry point
+│ ├── components/ # Reusable UI components
+│ │ ├── custom_button.dart
+│ │ ├── custom_text_field.dart
+│ │ └── headertext.dart
+│ ├── screens/ # App screens organized by feature
+│ │ ├── login/ # Login screen and logic
+│ │ │ ├── api_service.dart
+│ │ │ ├── login_controller.dart
+│ │ │ └── login.dart
+│ │ ├── signup/ # Signup screen and logic
+│ │ │ ├── signup_controller.dart
+│ │ │ └── signup.dart
+│ │ ├── home/
+│ │ │ └── allusers/
+│ │ │ └── api_service.dart
+│ │ ├── gemini/ # Gemini AI integration
+│ │ │ ├── chat_screen.dart
+│ │ │ ├── gemini_controller.dart
+│ │ │ └── gemini_widget.dart
+│ │ ├── quotecomp/ # Motivational quote feature
+│ │ │ ├── quote_api_service.dart
+│ │ │ ├── quote_controller.dart
+│ │ │ └── quotecard.dart
+│ │ └── weathercomp/ # Weather display feature
+│ │ ├── api_service.dart
+│ │ ├── weather_controller.dart
+│ │ └── detailed_weather_screen.dart
+│ └── utils/ # Utility and helper files
+│ └── env.dart
+├── pubspec.yaml # Flutter project configuration
 
 
 Dependencies
